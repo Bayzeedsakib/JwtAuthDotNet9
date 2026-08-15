@@ -24,5 +24,23 @@ namespace JwtAuthDotNet9.Controllers
             return Ok(user);
         }
 
+        [HttpPost("Login")]
+        public ActionResult<string> Login(UserDto request)
+        {
+            if(user.Username != request.Username)
+            {
+                return BadRequest("User Not Found!");
+            }
+
+            if(new PasswordHasher<User>().VerifyHashedPassword(user, user.PasswordHash, request.Password) 
+                == PasswordVerificationResult.Failed)
+            {
+                return BadRequest("Wrong password.");
+            }
+
+            string token = "success";
+
+            return Ok(token);
+        }
     }
 }
