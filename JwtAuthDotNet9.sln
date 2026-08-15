@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthDotNet9", "JwtAuthDotNet9\JwtAuthDotNet9.csproj", "{FEF29693-DA76-4B95-95F1-A3A40D76C56A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEF29693-DA76-4B95-95F1-A3A40D76C56A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEF29693-DA76-4B95-95F1-A3A40D76C56A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEF29693-DA76-4B95-95F1-A3A40D76C56A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEF29693-DA76-4B95-95F1-A3A40D76C56A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B1C18B08-1466-4B14-9ACB-4B7BE44C04BE}
+	EndGlobalSection
+EndGlobal
