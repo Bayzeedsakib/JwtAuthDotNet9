@@ -1,6 +1,7 @@
 ﻿using JwtAuthDotNet9.Entities;
 using JwtAuthDotNet9.Models;
 using JwtAuthDotNet9.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
@@ -26,7 +27,7 @@ namespace JwtAuthDotNet9.Controllers
             var user = await authservice.RegisterAsync(request);
             if (user is null)
             {
-                return BadRequest("Username is already exist");
+                return BadRequest("Username is already exists");
             }
                 
 
@@ -45,7 +46,21 @@ namespace JwtAuthDotNet9.Controllers
             return Ok(token);
         }
 
-        
+        [Authorize]
+        [HttpGet]
+
+        public IActionResult AuthenticatedOnlyEndpoint()
+        {
+            return Ok("You are authenticated!");
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("admin-only")]
+
+        public IActionResult AdminOnlyEndpoint()
+        {
+            return Ok("You r an admin");
+        }
       
     }
 }

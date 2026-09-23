@@ -21,8 +21,9 @@ namespace JwtAuthDotNet9.Services
                 return null;
             }
 
-            if (new PasswordHasher<User>().VerifyHashedPassword(user, user.PasswordHash, request.Password)
-                == PasswordVerificationResult.Failed)
+            var passwordMatchStatus = new PasswordHasher<User>().VerifyHashedPassword(user, user.PasswordHash, request.Password);
+
+            if (passwordMatchStatus == PasswordVerificationResult.Failed)
             {
                 return null;
             }
@@ -53,7 +54,8 @@ namespace JwtAuthDotNet9.Services
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Role, user.Role)
             };
 
             var key = new SymmetricSecurityKey(
@@ -62,9 +64,9 @@ namespace JwtAuthDotNet9.Services
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
 
             var tokenDescriptor = new JwtSecurityToken(
-                issuer: configuration.GetValue<string>("AppSettings: Issuer"),
-                audience: configuration.GetValue<string>("AppSettings: Audience"),
-                claims = claims,
+                issuer: configuration.GetValue<string>("AppSettings:Issuer"),
+                audience: configuration.GetValue<string>("AppSettings:Audience"),
+                claims : claims,
                 expires: DateTime.UtcNow.AddDays(1),
                 signingCredentials: creds
                 );
